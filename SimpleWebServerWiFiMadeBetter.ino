@@ -8,9 +8,9 @@
 #include <Adafruit_TMP006.h>
 
 // your network name also called SSID
-char ssid[] = "MyWiFiSSID";
+char ssid[] = "energia";
 // your network password
-char password[] = "supersecretpassword";
+char password[] = "supersecret";
 // your network key Index number (needed only for WEP)
 int keyIndex = 0;
 
@@ -50,8 +50,11 @@ BMA222 accelerometer;
 void setup() {
   Serial.begin(115200);      // initialize serial communication
 
-  pinMode(RESET, OUTPUT);
-  digitalWrite(RESET, LOW);
+          pinMode(RED_LED, OUTPUT);
+          digitalWrite(RED_LED, LOW);
+
+//  pinMode(RESET, OUTPUT);
+//  digitalWrite(RESET, LOW);
 
   // The code causing the page to stop responding for some reason?
   Serial.println("Starting Adafruit TMP006.");
@@ -399,34 +402,12 @@ void loop() {
             client.println("                border-radius: 50%;");
             client.println("                margin: 0 auto;");
             client.println("            }");
-/*
-
-            if(button1State == HIGH){
-              client.println("<p>ON</p>");
-            }
-            else if (button1State == LOW){
-              client.println("<p>OFF</p>");              
-            }
-              client.println("");
-
-            client.println("Button 2 (SW2) Mode:");
-            
-            if(button2State == HIGH){
-              client.println("<p>ON</p>");
-            }
-            else if (button2State == LOW){
-              client.println("<p>OFF</p>");
-            }
-
-*/
- 
             client.println("            .buttons {");
-            client.println("              height: 100%;");
+            client.println("              height: 10%;");
             client.println("              width: 350px;");
             client.println("              margin-left: -300px;");
             client.println("              margin-right: auto;");
             client.println("              margin: auto;");
-            client.println("                background-color: green;");
             client.println("            }");
             
             client.println("            .button1 {");
@@ -529,19 +510,22 @@ void loop() {
             client.println("        <h1 align=center>");
             client.println("            <font color=\"red\">Welcome to the CC3200 WiFi Web Server Made Like Wayyyyy Better</font>");
             client.println("        </h1>");
+/*
             client.println("            Mode: <button onclick=\"location.href='/LEDS'\">");
             client.println("                LED");
             client.println("            </button>");
             client.println("            <button onclick=\"location.href='/SENSORS'\">");
             client.println("                Sensor");
             client.println("            </button>");
+*/            
             client.println("        <table>");
             client.println("          <tr>");
             client.println("            <td>RED LED (D7)</td>");
             client.println("            <td><button onclick=\"location.href='/LED/RH'\">HIGH</button></td>");
             client.println("            <td>");
-            client.println("            <button onclick=\"location.href='/LED/RH'\">LOW</button></td>");
+            client.println("            <button onclick=\"location.href='/LED/RL'\">LOW</button></td>");
             client.println("          </tr>");
+/*
             client.println("  <tr>");
             client.println("    <td>YELLOW LED (D6)</td>");
             client.println("    <td><button onclick=\"location.href='/LED/YH'\">HIGH</button></td>");
@@ -554,8 +538,10 @@ void loop() {
             client.println("  <td>");
             client.println("  <button onclick=\"location.href='/LED/GH'\">LOW</button></td>");
             client.println("  </tr>");
+*/
             client.println("</table>");
             client.println("        <br>");
+            client.println("        <table>");
             client.println("        <div class=\"sensors\">");
             client.println("            <div class=\"graph\">");
             client.println("                <div class=\"x-axis\"></div>");
@@ -588,7 +574,8 @@ void loop() {
             client.println("                </div>");
             client.println("              <div class=\"name_label\">Die</div>");
 
-/*
+            client.println("          </tr>");
+            client.println("          <tr>");
 
             client.println("              <div class=\"buttons\">");
             client.println("                <div class=\"button1\">");
@@ -606,8 +593,9 @@ void loop() {
             client.println("                  </div>");
             client.println("                </div>");
             client.println("              </div>");
-*/
 
+            client.println("          </tr>");
+            client.println("        </table>");
 /*
             client.println("Button1 Mode:");
             
@@ -649,9 +637,9 @@ void loop() {
 
         if (endsWith(buffer, "GET /LEDS")) {
 
-          sensor_mode = FALSE;
-          LED_mode = TRUE;
-          
+//          sensor_mode = FALSE;
+//          LED_mode = TRUE;
+
 //          pinMode(RED_LED, OUTPUT);
 //          pinMode(GREEN_LED, OUTPUT);
 //          pinMode(YELLOW_LED, OUTPUT);
